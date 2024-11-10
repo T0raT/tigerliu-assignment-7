@@ -247,7 +247,7 @@ def confidence_interval():
     intercepts = session.get("intercepts")
 
     parameter = request.form.get("parameter")
-    confidence_level = float(request.form.get("confidence_level"))
+    confidence_level = float(request.form.get("confidence_level")) / 100
 
     # Use the slopes or intercepts from the simulations
     if parameter == "slope":
@@ -293,7 +293,7 @@ def confidence_interval():
     plt.axvline(true_param, color="green", linestyle="--", linewidth=2, label="True Parameter")
     
     # Title and labels
-    plt.title(f"{confidence_level:.1f}% Confidence Interval for {parameter.capitalize()} (Mean Estimate)")
+    plt.title(f"{confidence_level*100:.1f}% Confidence Interval for {parameter.capitalize()} (Mean Estimate)")
     plt.xlabel(f"{parameter.capitalize()} Estimate")
     plt.legend()
     
